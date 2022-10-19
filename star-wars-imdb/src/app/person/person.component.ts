@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Person } from '../core/models/Person';
 import { SearchPeople } from '../core/models/SearchPeople';
@@ -10,7 +11,10 @@ import { PersonService } from './services/person.service';
   styleUrls: ['./person.component.scss'],
 })
 export class PersonComponent implements OnInit {
-  constructor(private personService: PersonService) {
+  constructor(
+    private personService: PersonService,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.people = [];
     this.page = 1;
     this.results = 0;
@@ -28,6 +32,9 @@ export class PersonComponent implements OnInit {
   private readonly destroy$ = new Subject<void>();
 
   ngOnInit(): void {
+    this.activatedRoute.data.subscribe((response: any) => {
+      this.person = response.person;
+    });
     this.getPeople();
   }
 
@@ -47,7 +54,6 @@ export class PersonComponent implements OnInit {
 
   setResult(data: SearchPeople) {
     this.people = data.results;
-    this.person = this.people[0];
     this.results = data.count;
     this.previous =
       data.previous != null

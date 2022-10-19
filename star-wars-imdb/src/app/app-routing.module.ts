@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
+import { PersonResolver } from './core/resolver/person.resolver';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./person/person.module').then(m => m.PersonModule),
     canActivate: [AuthGuard],
+    resolve: { person: PersonResolver },
   },
 ];
 

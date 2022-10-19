@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { Person } from 'src/app/core/models/Person';
 import { SearchPeople } from 'src/app/core/models/SearchPeople';
 
 @Injectable({
@@ -17,6 +18,10 @@ export class PersonService {
         return this.setId(data);
       })
     );
+  }
+
+  getPerson(id: number): Observable<Person> {
+    return this.http.get<Person>(`${this.url}/${id}`);
   }
 
   setId(data: SearchPeople): SearchPeople {
