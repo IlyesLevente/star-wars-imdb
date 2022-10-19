@@ -26,7 +26,7 @@ export class LoginComponent {
   login() {
     const val = this.form.value;
     if (val.email && val.password) {
-      this.authService.login(val.email, val.password).subscribe({
+      this.authService.login().subscribe({
         next: (status: Status) => {
           if (status) {
             localStorage.setItem('user', JSON.stringify(status));

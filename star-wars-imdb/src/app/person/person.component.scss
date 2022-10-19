@@ -1,0 +1,16 @@
+.blocks {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.handsetblocks {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.item {
+  flex: 0 1 calc(50% - 32px);
+}

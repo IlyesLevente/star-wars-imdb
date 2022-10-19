@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Status } from 'src/app/core/models/Status';
 @Injectable({
@@ -10,11 +10,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(user: string, password: string): Observable<Status> {
-    let params = new HttpParams();
-    params = params.append('user', user);
-    params = params.append('password', password);
-    return this.http.get<Status>(`${this.url}/login`, { params: params });
+  login(): Observable<Status> {
+    return this.http.get<Status>(`${this.url}/login`);
   }
 
   get isAuthenticated(): boolean {
