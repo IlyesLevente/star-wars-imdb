@@ -5,6 +5,7 @@ import { Person } from '../core/models/Person';
 import { SearchPeople } from '../core/models/SearchPeople';
 import { PersonService } from './services/person.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Film } from '../core/models/Film';
 
 @Component({
   selector: 'app-person',
@@ -24,6 +25,8 @@ export class PersonComponent implements OnInit {
     this.previous = null;
     this.person = {} as Person;
     this.isHandset = false;
+    this.films = [];
+    this.imageURL = './assets/images/placeholder.jpeg';
   }
 
   people: Person[];
@@ -33,12 +36,15 @@ export class PersonComponent implements OnInit {
   next: string | null;
   previous: string | null;
   isHandset: boolean;
+  imageURL: string;
+  films: Film[];
   private readonly destroy$ = new Subject<void>();
 
   ngOnInit(): void {
     // Person from resolver
     this.activatedRoute.data.subscribe((response: any) => {
       this.person = response.person;
+      this.getFilms(this.person.films);
     });
     // number of persons, first page of persons
     this.getPeople();
@@ -65,10 +71,23 @@ export class PersonComponent implements OnInit {
       });
   }
 
-  setResult(data: SearchPeople) {
+  setResult(data: SearchPeople): void {
     this.people = data.results;
     this.results = data.count;
     this.previous = data.previous;
     this.next = data.next;
+  }
+
+  getFilms(films: string[]): void {
+    films.forEach((film: string) => {
+      this.personService
+        .getFilm(film)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (film: Film) => {
+            this.films.push(film);
+          },
+        });
+    });
   }
 }

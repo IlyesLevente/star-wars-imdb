@@ -1,16 +1,22 @@
 .blocks {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
 }
 
-.handsetblocks {
+.handsetitem {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex: 1;
+  justify-content: center;
 }
 
 .item {
-  flex: 0 1 calc(50% - 32px);
+  flex: 1;
+  justify-content: center;
+}
+
+.image {
+  width: 340px;
+}
+
+.handsetimage {
+  width: 300px;
 }

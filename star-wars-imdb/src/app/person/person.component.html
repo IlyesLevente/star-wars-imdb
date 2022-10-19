@@ -1,16 +1,39 @@
-<div [ngClass]="!isHandset ? 'blocks' : 'handsetblocks'">
+<div *ngIf="!isHandset" class="blocks">
   <div class="item">
     <p>{{ person.name }}</p>
     <p>{{ person.height }}</p>
     <p>{{ person.mass }}</p>
     <p>{{ person.hair_color }}</p>
+    <p>{{ person.birth_year }}</p>
+    <div *ngFor="let film of films">
+      <p>{{ film.title }} - {{ film.release_date | date }}</p>
+    </div>
+  </div>
+  <div class="item" *ngIf="imageURL && imageURL !== ''">
+    <img class="image" [src]="imageURL" />
+  </div>
+</div>
+
+<div *ngIf="isHandset">
+  <div class="handsetitem">
+    <p>{{ person.name }}</p>
+  </div>
+  <div class="handsetitem" *ngIf="imageURL && imageURL !== ''">
+    <img class="handsetimage" [src]="imageURL" />
+  </div>
+  <div class="handsetitem">
+    <p>{{ person.height }}</p>
+  </div>
+  <div class="handsetitem">
+    <p>{{ person.mass }}</p>
+  </div>
+  <div class="handsetitem">
+    <p>{{ person.hair_color }}</p>
+  </div>
+  <div class="handsetitem">
     <p>{{ person.birth_year }}</p>
   </div>
-  <div class="item">
-    <p>{{ person.name }}</p>
-    <p>{{ person.height }}</p>
-    <p>{{ person.mass }}</p>
-    <p>{{ person.hair_color }}</p>
-    <p>{{ person.birth_year }}</p>
+  <div class="handsetitem" *ngFor="let film of films">
+    <p>{{ film.title }} - {{ film.release_date | date }}</p>
   </div>
 </div>

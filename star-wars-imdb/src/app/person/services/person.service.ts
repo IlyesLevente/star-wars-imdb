@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { Film } from 'src/app/core/models/Film';
 import { Person } from 'src/app/core/models/Person';
 import { SearchPeople } from 'src/app/core/models/SearchPeople';
 
@@ -22,6 +23,10 @@ export class PersonService {
 
   getPerson(id: number): Observable<Person> {
     return this.http.get<Person>(`${this.url}/${id}`);
+  }
+
+  getFilm(film: string): Observable<Film> {
+    return this.http.get<Film>(`${film}`);
   }
 
   setId(data: SearchPeople): SearchPeople {
