@@ -46,7 +46,6 @@ export class PersonComponent implements OnInit {
       this.person = response.person;
       this.getFilms(this.person.films);
     });
-    // number of persons, first page of persons
     this.getPeople();
     // check size for responiseveness
     this.responsive.observe(Breakpoints.HandsetPortrait).subscribe(result => {
@@ -62,6 +61,7 @@ export class PersonComponent implements OnInit {
     this.destroy$.complete();
   }
 
+  // number of persons, first page of persons
   getPeople(): void {
     this.personService
       .getPeople(this.page)

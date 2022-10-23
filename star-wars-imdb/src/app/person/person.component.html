@@ -1,11 +1,37 @@
+<mat-toolbar class="toolbar">
+  <div class="header">
+    <span class="title">Star Wars IMDB</span>
+
+    <button mat-icon-button class="right">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
 <div *ngIf="!isHandset" class="blocks">
   <div class="item">
-    <p>{{ person.name }}</p>
-    <p>{{ person.height }}</p>
-    <p>{{ person.mass }}</p>
-    <p>{{ person.hair_color }}</p>
-    <p>{{ person.birth_year }}</p>
-    <div *ngFor="let film of films">
+    <p class="name">{{ person.name }}</p>
+    <div class="data">
+      <div class="left grey">Birth:</div>
+      <div class="right">{{ person.birth_year }}</div>
+      <div class="clear"></div>
+    </div>
+    <div class="data">
+      <div class="left grey">Height:</div>
+      <div class="right">{{ person.height }}</div>
+      <div class="clear"></div>
+    </div>
+    <div class="data">
+      <div class="left grey">Mass:</div>
+      <div class="right">{{ person.mass }}</div>
+      <div class="clear"></div>
+    </div>
+    <div class="data">
+      <div class="left grey">Eye:</div>
+      <div class="right">{{ person.eye_color }}</div>
+      <div class="clear"></div>
+    </div>
+    <div class="film">Films</div>
+    <div class="films" *ngFor="let film of films">
       <p>{{ film.title }} - {{ film.release_date | date }}</p>
     </div>
   </div>
@@ -22,16 +48,28 @@
     <img class="handsetimage" [src]="imageURL" />
   </div>
   <div class="handsetitem">
-    <p>{{ person.height }}</p>
-  </div>
-  <div class="handsetitem">
-    <p>{{ person.mass }}</p>
-  </div>
-  <div class="handsetitem">
-    <p>{{ person.hair_color }}</p>
-  </div>
-  <div class="handsetitem">
-    <p>{{ person.birth_year }}</p>
+    <div class="item">
+      <div class="data">
+        <div class="left">Birth:</div>
+        <div class="right">{{ person.birth_year }}</div>
+        <div class="clear"></div>
+      </div>
+      <div class="data">
+        <div class="left">Height:</div>
+        <div class="right">{{ person.height }}</div>
+        <div class="clear"></div>
+      </div>
+      <div class="data">
+        <div class="left">Mass:</div>
+        <div class="right">{{ person.mass }}</div>
+        <div class="clear"></div>
+      </div>
+      <div class="data">
+        <div class="left">Eye:</div>
+        <div class="right">{{ person.eye_color }}</div>
+        <div class="clear"></div>
+      </div>
+    </div>
   </div>
   <div class="handsetitem" *ngFor="let film of films">
     <p>{{ film.title }} - {{ film.release_date | date }}</p>

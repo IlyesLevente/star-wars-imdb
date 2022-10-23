@@ -1,3 +1,5 @@
+@import '../../variables';
+
 .blocks {
   display: flex;
 }
@@ -15,8 +17,89 @@
 
 .image {
   width: 340px;
+  border-radius: 50%;
+  border: 2px solid $light-blue;
 }
 
 .handsetimage {
   width: 300px;
+  border-radius: 50%;
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+}
+
+.left {
+  float: left;
+  color: $mid-grey;
+  font-size: 24px;
+}
+
+.right {
+  float: right;
+  color: $mid-blue;
+  font-size: 26px;
+}
+
+.clear {
+  clear: both;
+}
+
+.blocks:before {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  top: 25%;
+  height: 70%;
+  content: '';
+  border: 2px dashed #03c3ff;
+}
+
+.toolbar {
+  background-color: $mid-blue;
+}
+
+.normal-600 {
+  font-style: normal;
+  font-weight: 600;
+}
+
+.normal-400 {
+  font-style: normal;
+  font-weight: 400;
+}
+
+.title {
+  color: $light-blue;
+  @extend .normal-600;
+  font-size: 38px;
+  line-height: 58px;
+}
+
+.name {
+  @extend .normal-600;
+  font-size: 40px;
+  line-height: 61px;
+  color: $mid-blue;
+}
+
+.data {
+  @extend .normal-400;
+  line-height: 30px;
+}
+
+.films {
+  @extend .normal-600;
+  font-size: 22px;
+  line-height: 33px;
+  color: $mid-blue;
+}
+
+.film {
+  @extend .normal-400;
+  font-size: 20px;
+  line-height: 30px;
+  color: $dark-blue;
 }
