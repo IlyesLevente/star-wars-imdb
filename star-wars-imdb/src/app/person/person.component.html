@@ -1,14 +1,12 @@
 <mat-toolbar class="toolbar">
   <div class="header">
     <span class="title">Star Wars IMDB</span>
-
-    <button mat-icon-button class="right">
-      <mat-icon>exit_to_app</mat-icon>
-    </button>
+    <span><mat-icon class="icon">navigate_next</mat-icon></span>
+    <span><mat-icon class="icon">exit_to_app</mat-icon></span>
   </div>
 </mat-toolbar>
 <div *ngIf="!isHandset" class="blocks">
-  <div class="item">
+  <div class="item block">
     <p class="name">{{ person.name }}</p>
     <div class="data">
       <div class="left grey">Birth:</div>
@@ -35,20 +33,20 @@
       <p>{{ film.title }} - {{ film.release_date | date }}</p>
     </div>
   </div>
-  <div class="item" *ngIf="imageURL && imageURL !== ''">
+  <div class="item block" *ngIf="imageURL && imageURL !== ''">
     <img class="image" [src]="imageURL" />
   </div>
 </div>
 
 <div *ngIf="isHandset">
-  <div class="handsetitem">
+  <div class="handsetitem name-handset">
     <p>{{ person.name }}</p>
   </div>
   <div class="handsetitem" *ngIf="imageURL && imageURL !== ''">
     <img class="handsetimage" [src]="imageURL" />
   </div>
   <div class="handsetitem">
-    <div class="item">
+    <div class="item block">
       <div class="data">
         <div class="left">Birth:</div>
         <div class="right">{{ person.birth_year }}</div>
@@ -71,7 +69,8 @@
       </div>
     </div>
   </div>
-  <div class="handsetitem" *ngFor="let film of films">
+  <div class="film block">Films</div>
+  <div class="handsetitem films-handset" *ngFor="let film of films">
     <p>{{ film.title }} - {{ film.release_date | date }}</p>
   </div>
 </div>

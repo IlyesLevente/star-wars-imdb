@@ -29,6 +29,7 @@
 .header {
   width: 100%;
   text-align: center;
+  display: block;
 }
 
 .left {
@@ -102,4 +103,40 @@
   font-size: 20px;
   line-height: 30px;
   color: $dark-blue;
+  display: flex;
+  flex-direction: row;
+}
+
+.fim:before,
+.film:after {
+  content: '';
+  flex: 1 1;
+  border-bottom: 2px solid $dark-blue;
+  margin: auto auto auto 20px;
+}
+
+.block {
+  padding: 5%;
+}
+
+.name-handset {
+  @extend .normal-600;
+  font-size: 40px;
+  line-height: 61px;
+  text-align: center;
+  color: $mid-blue;
+}
+
+.films-handset {
+  @extend .normal-600;
+  font-size: 22px;
+  line-height: 33px;
+  color: $mid-blue;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.icon {
+  color: $white;
+  float: right;
 }
