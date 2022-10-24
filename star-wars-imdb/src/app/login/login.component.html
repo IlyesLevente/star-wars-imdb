@@ -1,16 +1,20 @@
-<form [formGroup]="form">
-  <fieldset>
-    <legend>Login</legend>
+<div class="form">
+  <form [formGroup]="form">
+    <p class="title">Star Wars IMDB</p>
     <div class="form-field">
-      <label>Email:</label>
-      <input name="email" formControlName="email" />
+      <input name="email" formControlName="email" placeholder="Your name" />
     </div>
     <div class="form-field">
-      <label>Password:</label>
-      <input name="password" formControlName="password" type="password" />
+      <input
+        name="password"
+        formControlName="password"
+        type="password"
+        placeholder="Your password" />
     </div>
-  </fieldset>
-  <div class="form-buttons">
-    <button class="button button-primary" (click)="login()">Login</button>
-  </div>
-</form>
+    <div class="form-buttons">
+      <button class="button" (click)="login()">
+        <span class="login">Log In</span>
+      </button>
+    </div>
+  </form>
+</div>
