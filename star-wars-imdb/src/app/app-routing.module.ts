@@ -20,6 +20,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./person/person.module').then(m => m.PersonModule),
     canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     resolve: { person: PersonResolver },
   },
 ];

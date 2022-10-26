@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { Person } from '../core/models/Person';
 import { SearchPeople } from '../core/models/SearchPeople';
 import { PersonService } from './services/person.service';
@@ -16,7 +16,8 @@ export class PersonComponent implements OnInit {
   constructor(
     private personService: PersonService,
     private activatedRoute: ActivatedRoute,
-    private responsive: BreakpointObserver
+    private responsive: BreakpointObserver,
+    private router: Router
   ) {
     this.people = [];
     this.page = 1;
@@ -39,6 +40,7 @@ export class PersonComponent implements OnInit {
   imageURL: string;
   films: Film[];
   private readonly destroy$ = new Subject<void>();
+  disableNext = new BehaviorSubject<boolean>(false);
 
   ngOnInit(): void {
     // Person from resolver
@@ -89,5 +91,28 @@ export class PersonComponent implements OnInit {
           },
         });
     });
+  }
+
+  nextPerson(): void {
+    const random = Math.floor(Math.random() * this.results) + 1;
+    this.disableNext.next(true);
+    this.personService
+      .getPerson(random)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (data: Person) => {
+          this.person = data;
+          this.films = [];
+          this.getFilms(this.person.films);
+        },
+        complete: () => {
+          this.disableNext.next(false);
+        },
+      });
+  }
+
+  exit(): void {
+    localStorage.setItem('user', 'null');
+    this.router.navigate(['/login']);
   }
 }

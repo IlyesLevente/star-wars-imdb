@@ -138,5 +138,10 @@
 
 .icon {
   color: $white;
-  float: right;
+}
+
+.header-button {
+  border: none;
+  background-color: $mid-blue;
+  outline: none;
 }

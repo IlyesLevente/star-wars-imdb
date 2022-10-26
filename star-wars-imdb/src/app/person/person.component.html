@@ -1,8 +1,16 @@
 <mat-toolbar class="toolbar">
   <div class="header">
     <span class="title">Star Wars IMDB</span>
-    <span><mat-icon class="icon">navigate_next</mat-icon></span>
-    <span><mat-icon class="icon">exit_to_app</mat-icon></span>
+    <button
+      mat-icon-button
+      [disabled]="disableNext | async"
+      (click)="nextPerson()"
+      class="header-button">
+      <mat-icon class="icon">navigate_next</mat-icon>
+    </button>
+    <button mat-icon-button class="header-button">
+      <mat-icon class="icon" (click)="exit()">exit_to_app</mat-icon>
+    </button>
   </div>
 </mat-toolbar>
 <div *ngIf="!isHandset" class="blocks">

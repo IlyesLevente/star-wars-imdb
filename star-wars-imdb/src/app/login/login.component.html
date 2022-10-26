@@ -12,7 +12,10 @@
         placeholder="Your password" />
     </div>
     <div class="form-buttons">
-      <button class="button" (click)="login()">
+      <button
+        class="button"
+        [disabled]="disableLogin | async"
+        (click)="login()">
         <span class="login">Log In</span>
       </button>
     </div>

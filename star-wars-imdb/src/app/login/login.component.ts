@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { Status } from '../core/models/Status';
 import { AuthService } from './services/auth.service';
 
@@ -11,6 +12,7 @@ import { AuthService } from './services/auth.service';
 })
 export class LoginComponent {
   form: FormGroup;
+  disableLogin = new BehaviorSubject<boolean>(false);
 
   constructor(
     private fb: FormBuilder,
@@ -26,6 +28,7 @@ export class LoginComponent {
   login() {
     const val = this.form.value;
     if (val.email && val.password) {
+      this.disableLogin.next(true);
       this.authService.login().subscribe({
         next: (status: Status) => {
           if (status) {
@@ -37,6 +40,9 @@ export class LoginComponent {
         },
         error: () => {
           localStorage.setItem('user', 'null');
+        },
+        complete: () => {
+          this.disableLogin.next(false);
         },
       });
     }
